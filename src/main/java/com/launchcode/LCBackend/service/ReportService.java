@@ -1,5 +1,6 @@
 package com.launchcode.LCBackend.service;
 
+import com.launchcode.LCBackend.dto.MatchDto;
 import com.launchcode.LCBackend.dto.responce.ReportApiResponce;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,12 @@ public class ReportService {
         System.out.println("polling report api: " + LocalDateTime.now());
         RestTemplate template = new RestTemplate();
         ResponseEntity<ReportApiResponce> response = template.getForEntity("http://localhost:8080/mock-api", ReportApiResponce.class);
-        System.out.println(response.getBody());
+        ReportApiResponce data = response.getBody();
+
+        if(data != null) {
+            for (MatchDto match : data.matches()) {
+
+            }
+        }
     }
 }
