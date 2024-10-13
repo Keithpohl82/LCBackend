@@ -31,6 +31,8 @@ public class ReportService {
                 Optional<Match> aMatchOpt = matchRepository.findByEmail(match.email());
                 aMatchOpt.ifPresentOrElse(aMatch -> {System.out.println(aMatch);}, () -> {
                     System.out.println("Not Match Found");
+                    Match matchToAdd = new Match(match.email(), match.createdAt(), match.fullName(), match.phoneNumber());
+                    matchRepository.save(matchToAdd);
                 });
             }
         }
