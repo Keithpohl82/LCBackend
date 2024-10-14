@@ -27,11 +27,18 @@ public class ReportService {
         ReportApiResponce data = response.getBody();
 
         if(data != null) {
-            for (MatchDto match : data.matches()) {
-                Optional<Match> aMatchOpt = matchRepository.findByEmail(match.email());
-                aMatchOpt.ifPresentOrElse(aMatch -> {System.out.println(aMatch);}, () -> {
+            for (MatchDto apiMatch : data.matches()) {
+                Optional<Match> dbMatchOpt = matchRepository.findByEmail(apiMatch.email());
+                dbMatchOpt.ifPresentOrElse(dbMatch -> {
+                    if(!dbMatch.getCreatedAt().equals(apiMatch.createdAt())){
+                        System.out.println("Send a message to slack for match: " + dbMatch);
+                        dbMatch.setCreatedAt(apiMatch.createdAt());
+                        matchRepository.save(dbMatch);
+                    }
+
+                    }, () -> {
                     System.out.println("Not Match Found");
-                    Match matchToAdd = new Match(match.email(), match.createdAt(), match.fullName(), match.phoneNumber());
+                    Match matchToAdd = new Match(apiMatch.email(), apiMatch.createdAt(), apiMatch.fullName(), apiMatch.phoneNumber());
                     matchRepository.save(matchToAdd);
                 });
             }
