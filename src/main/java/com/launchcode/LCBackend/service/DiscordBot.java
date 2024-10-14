@@ -7,7 +7,7 @@ import java.net.URL;
 public class DiscordBot {
 
     // Replace with your webhook URL
-    private static final String DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1295422354758959238/y3VZvAS3PGGLRKFjfaCIZX6vp9HUHQPfXFhUGkeBOGuzYS63vb-_S9i6pZXnY_SvnhLY";
+    private static final String DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1295532226544533566/mPlV72aR3dxlHg67O3noq-sKQafV3lPomojwNN7qGX9fEglFt8Rx2dRFOEcmonxyArqN";
 
     public static void postMessage(String message) {
         try {
