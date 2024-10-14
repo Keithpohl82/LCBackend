@@ -16,7 +16,7 @@ public class ReportScheduler {
     }
 
     //https://crontab.guru/
-    @Scheduled(fixedDelay = 5000)
+    @Scheduled(fixedDelay = 500000)
     public void pollReportApi () {
         reportService.pollReportApi();
     }
