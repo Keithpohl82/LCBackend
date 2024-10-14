@@ -9,7 +9,7 @@ import java.net.URL;
 public class SlackBot {
 
     // Replace with your bot token and channel ID
-    private static final String TOKEN = "xoxb-7866562071030-7873202514642-62A1UTer3e8CndPquw3wVYUd";
+    private static final String TOKEN = "xoxb-7866562071030-7873202514642-z3Ln43bDiV6PEfV4d08bU0jx";
     private static final String CHANNEL_ID = "room-6-psudo-project";
     private static final String SLACK_API_URL = "https://slack.com/api/chat.postMessage";
 
