@@ -1,29 +1,25 @@
 package com.launchcode.LCBackend.service;
 
-import org.springframework.stereotype.Service;
-
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class SlackBot {
+public class DiscordBot {
 
-    // Replace with your bot token and channel ID
-    private static final String TOKEN = "put token from slack here";
-    private static final String CHANNEL_ID = "room-6-psudo-project";
-    private static final String SLACK_API_URL = "https://slack.com/api/chat.postMessage";
+    // Replace with your webhook URL
+    private static final String DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1295422354758959238/y3VZvAS3PGGLRKFjfaCIZX6vp9HUHQPfXFhUGkeBOGuzYS63vb-_S9i6pZXnY_SvnhLY";
 
     public static void postMessage(String message) {
         try {
-            URL url = new URL(SLACK_API_URL);
+            URL url = new URL(DISCORD_WEBHOOK_URL);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setDoOutput(true);
             connection.setRequestMethod("POST");
-            connection.setRequestProperty("Authorization", "Bearer " + TOKEN);
             connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
 
-            String jsonPayload = "{\"channel\":\"" + CHANNEL_ID + "\",\"text\":\"" + message + "\"}";
+            // Create JSON payload
+            String jsonPayload = "{\"content\":\"" + message + "\"}";
 
             try (OutputStream outputStream = connection.getOutputStream()) {
                 byte[] input = jsonPayload.getBytes("utf-8");

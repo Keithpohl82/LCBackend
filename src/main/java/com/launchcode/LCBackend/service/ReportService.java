@@ -53,6 +53,7 @@ public class ReportService {
                         dbMatch.setCreatedAt(apiMatch.createdAt());
                         matchRepository.save(dbMatch);
                         SlackBot.postMessage("User has updated \n" +message);
+                        DiscordBot.postMessage("User has updated \n" +message);
                     }
 
                     }, () -> {
@@ -60,7 +61,7 @@ public class ReportService {
                     Match matchToAdd = new Match(apiMatch.email(), apiMatch.createdAt(), apiMatch.fullName(), apiMatch.phoneNumber());
                     matchRepository.save(matchToAdd);
 
-
+                    DiscordBot.postMessage(message);
                     SlackBot.postMessage(message);
                 });
             }
