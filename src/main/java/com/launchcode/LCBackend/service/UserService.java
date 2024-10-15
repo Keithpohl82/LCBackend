@@ -19,7 +19,7 @@ public class UserService {
     public void registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-        DiscordBot.postMessage(user.getUsername() + " Was added to the database");
+        DiscordBot.postMessage(user.getFirstname() + " " + user.getLastname() + " Was added to the database");
     }
 
     public Optional<User> loginUser(String username, String password) {
